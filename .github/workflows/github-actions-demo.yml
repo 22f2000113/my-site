@@ -1,6 +1,5 @@
 name: GitActionAssign
 
-on: [push]
 jobs:
   test:
     steps:
