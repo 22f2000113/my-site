@@ -1,5 +1,8 @@
 name: GitActionAssign
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   test:
     steps:
