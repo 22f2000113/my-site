@@ -28,5 +28,5 @@ jobs:
         run: |
           git add daily_commit.log
           git commit -m "Automated commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://x-access-token:${{ secrets.API_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
     
