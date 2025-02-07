@@ -1,0 +1,32 @@
+name: Daily Scheduler
+
+on:
+  schedule:
+    - cron: "30 4 * * *"  # Runs daily at 04:30 UTC (adjust as needed)
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # Prevents conflicts
+
+      - name: Set Up Git Credentials
+        run: |
+          git config --global user.name "22f2000113"
+          git config --global user.email "22f2000113@ds.study.iitm.ac.in"
+
+      - name: Make Changes
+        run: |
+          echo "Automated commit on $(date)" >> daily_commit.log
+
+      - name: Commit and Push Changes
+        run: |
+          git add daily_commit.log
+          git commit -m "Automated commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+    
